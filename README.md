@@ -1,6 +1,8 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)]()   [![NPM version](https://badge.fury.io/js/data-mock-send.svg)](https://npmjs.org/package/data-mock-send) 
 
-# data-mock-send - 接口数据发送 配合 data-mock-server 使用效果更佳
+# data-mock-send - 接口数据发送工具
+
+配合 data-mock-server 使用效果更佳
 
 ## 功能特性
 
