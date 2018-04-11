@@ -1,7 +1,7 @@
 var fs = require("fs");
 var path = require('path');  
 var request = require('request');
-function fileDisplay(filePath, serverUrl){  
+function dataMockSend(filePath, serverUrl){  
     //根据文件路径读取文件，返回文件列表  
     fs.readdir(filePath,function(err,files){  
         if(err){  
@@ -43,7 +43,7 @@ function fileDisplay(filePath, serverUrl){
                             console.log(filedir);  
                         }  
                         if(isDir){  
-                            fileDisplay(filedir);//递归，如果是文件夹，就继续遍历该文件夹下面的文件  
+                            dataMockSend(filedir);//递归，如果是文件夹，就继续遍历该文件夹下面的文件  
                         }  
                     }  
                 })  
@@ -52,5 +52,5 @@ function fileDisplay(filePath, serverUrl){
     });  
 }
 module.exports = {
-    fileDisplay: fileDisplay
+    dataMockSend: dataMockSend
 }
