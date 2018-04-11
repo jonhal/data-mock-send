@@ -2,7 +2,7 @@
 
 # data-mock-send - 接口数据发送工具
 
-配合 data-mock-server 使用效果更佳
+配合 [data-mock-server](https://github.com/jonhal/data-mock-server) 使用效果更佳
 
 ## 功能特性
 
@@ -20,4 +20,3 @@
  1. 提供云服务端的数据模拟，不需要配置直接请求线上服务器
  2. 接口文档转换，根据文档格式自动配置mockmock数据
  3. 欢迎issue 或者发邮件simotophs@gmail.com
-### [data-mock-server](https://github.com/jonhal/data-mock-server)
