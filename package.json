@@ -1,6 +1,6 @@
 {
   "name": "data-mock-send",
-  "version": "1.0.1",
+  "version": "1.0.27",
   "description": "data-mock-send",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,12 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jonhal/data-mock-send.git"
+  },
+  "bin": {
+    "dataMockSend": "./bin/dataMockSend.js"
+  },
+  "dependencies": {
+    "yargs": "^8.0.2"
   },
   "keywords": [
     "data-mock-send",
