@@ -15,7 +15,7 @@
 ### 如何使用？
 1. npm install data-mock-send
 2. dataMockSend 传入两个参数第一个项目中存放mock文件的目录，第二个参数为data-mock-server服务器地址，不需要加initdataformock。
-
+3. data-mock-server启动之后 使用可参考demo https://github.com/jonhal/data-mock-demo
 ### 我们还想做的
  1. 提供云服务端的数据模拟，不需要配置直接请求线上服务器
  2. 接口文档转换，根据文档格式自动配置mockmock数据
