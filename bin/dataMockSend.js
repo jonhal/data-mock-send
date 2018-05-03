@@ -4,8 +4,45 @@ var fs = require("fs");
 var path = require('path');  
 var request = require('request');
 var argv = require('yargs').argv;
+var chokidar = require('chokidar');
 
-function dataMockSend(filePath, serverUrl){  
+
+function getAdress() {
+    var os = require('os');
+    var ifaces = os.networkInterfaces();
+    var address;
+    Object.keys(ifaces).forEach(function (ifname) {
+        var alias = 0;
+        ifaces[ifname].forEach(function (iface) {
+            if ('IPv4' !== iface.family || iface.internal !== false) {
+            // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+                return;
+            }
+            if (iface.address) {
+                address = iface.address;
+                return address;
+            }
+
+            // if (alias >= 1) {
+            // // this single interface has multiple ipv4 addresses
+            //     address = iface.address;
+            //     // console.log(ifname + ':' + alias, iface.address);
+            //     // return address;
+            // } else {
+            // // this interface has only one ipv4 adress
+            //     address = iface.address;
+            //     // console.log(ifname, iface.address);
+            //     // return address;
+            // }
+            ++alias;
+        });
+
+    });       
+    return address;
+}
+
+function dataMockSend(filePath, serverUrl){
+    let address = getAdress().replace(/\./g,"");
     //根据文件路径读取文件，返回文件列表  
     fs.readdir(filePath,function(err,files){  
         if(err){  
@@ -30,12 +67,12 @@ function dataMockSend(filePath, serverUrl){
                             var url = filename.split(/(?=[A-Z])/).join("/").replace('.json','').toLocaleLowerCase();
                             console.log(filename);
                             var options = { 
-                                uri: serverUrl + '/initdataformock/' + url, 
+                                uri: serverUrl + '/' + address + '/initdataformock/' + url, 
                                 method: 'POST', 
                                 json: jsonContent
                               };
                             
-                              console.log(uri);
+                            //   console.log(uri);
                               request(options, function(error, response, body) {
                                   if (!error && response.statusCode == 200) {
                                       //输出返回的内容
@@ -57,8 +94,12 @@ function dataMockSend(filePath, serverUrl){
     });  
 
 }
+
 if (argv.path && argv.serverUrl) {
-    dataMockSend(argv.path, argv.serverUrl);
+    chokidar.watch(argv.path, {ignored: /(^|[\/\\])\../}).on('all', (event, path) => {
+        dataMockSend(argv.path, argv.serverUrl);
+    });
+    console.log('send');
 }
 else if(!argv.path){
     console.log('pleae write path');

@@ -1,6 +1,6 @@
 {
   "name": "data-mock-send",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "data-mock-send",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,8 @@
     "dataMockSend": "./bin/dataMockSend.js"
   },
   "dependencies": {
+    "chokidar": "^2.0.3",
+    "request": "^2.85.0",
     "yargs": "^8.0.2"
   },
   "keywords": [
@@ -26,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/jonhal/data-mock-send/issues"
   },
-  "homepage": "https://github.com/jonhal/data-mock-send#readme"
+  "homepage": "https://github.com/jonhal/data-mock-send#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
 }
